@@ -1,0 +1,8 @@
+# Folder
+__pycache__/
+
+# Files
+*.csv
+*.jpg
+*.jpeg
+*.png
