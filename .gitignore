@@ -1,8 +1,8 @@
 # Folder
 __pycache__/
+.vscode/
 
 # Files
 *.csv
 *.jpg
 *.jpeg
-*.png
