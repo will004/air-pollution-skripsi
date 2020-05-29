@@ -67,8 +67,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.simulate_action.setShortcut('Ctrl+R')
         self.simulate_action.triggered.connect(self.simulateMenuFunction)
 
-        self.info_action.triggered.connect(self.infoMenuFunction)
-        self.help_action.triggered.connect(self.helpMenuFunction)
+        self.info_action.triggered.connect(self.show_UIInfo)
+        self.help_action.triggered.connect(self.show_UIHelp)
 
         self.exit_action.setShortcut('Ctrl+W')
         self.exit_action.triggered.connect(self.exitMenuFunction)
@@ -83,12 +83,6 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             self.show_UISimulate()
 
-    def infoMenuFunction(self):
-        self.show_UIInfo()
-    
-    def helpMenuFunction(self):
-        self.show_UIHelp()
-    
     def exitMenuFunction(self):
         self.msg = QtWidgets.QMessageBox(self)
         self.msg.setIcon(QtWidgets.QMessageBox.Warning)
