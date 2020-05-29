@@ -324,6 +324,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 # pass
             elif value == 2:
                 # 3D graph -> idx=2
+                self.ui_result.outputWidget.update()
                 QtWidgets.QApplication.processEvents()
                 # pass
             self.ui_result.btnExport.hide()
