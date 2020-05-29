@@ -12,9 +12,8 @@ from matplotlib.figure import Figure
 class Canvas3D(FigureCanvas):
     def __init__(self):
         self.fig = plt.figure()
-        FigureCanvas.__init__(self, self.fig)  # creating FigureCanvas
-        self.axes = self.fig.gca(projection='3d')  # generates 3D Axes object
-        # self.axes.hold(False)  # clear axes on each run
+        FigureCanvas.__init__(self, self.fig)
+        self.axes = self.fig.gca(projection='3d')
 
     def drawGraph(self, x, t, C):  # Fun for Graph plotting
         x,t = np.meshgrid(x,t)
@@ -29,9 +28,6 @@ class Canvas3D(FigureCanvas):
 class Canvas2D(FigureCanvas):
     def __init__(self):
         self.fig = plt.figure(tight_layout=True)
-        # self.fig.subplots_adjust(left=0.1, right=0.9,
-        #                             bottom=0.1, top=0.9,
-        #                             hspace=0.5, wspace=0.5)
         FigureCanvas.__init__(self, self.fig)  # creating FigureCanvas
         self.axes = self.fig.gca()
 
