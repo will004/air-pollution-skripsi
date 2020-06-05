@@ -1,4 +1,4 @@
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as Canvas
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
@@ -9,10 +9,10 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 
 
-class Canvas3D(FigureCanvas):
+class Canvas3D(Canvas):
     def __init__(self):
         self.fig = plt.figure()
-        FigureCanvas.__init__(self, self.fig)
+        Canvas.__init__(self, self.fig)
         self.axes = self.fig.gca(projection='3d')
 
     def drawGraph(self, x, t, C):  # Fun for Graph plotting
@@ -25,10 +25,10 @@ class Canvas3D(FigureCanvas):
         self.axes.set_zlabel('Concentration')
         self.draw_idle()
 
-class Canvas2D(FigureCanvas):
+class Canvas2D(Canvas):
     def __init__(self):
         self.fig = plt.figure(tight_layout=True)
-        FigureCanvas.__init__(self, self.fig)  # creating FigureCanvas
+        Canvas.__init__(self, self.fig)  # creating FigureCanvas
         self.axes = self.fig.gca()
 
     def drawGraph(self, x, t, C, userTimeInput=list()):

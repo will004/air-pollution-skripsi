@@ -7,29 +7,6 @@ from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as Navigatio
 import pandas as pd
 import numpy as np
 
-
-class FinishLoadingSignal(QtCore.QObject):
-    done = QtCore.pyqtSignal()
-
-class SimulationRunnable(QtCore.QRunnable):
-    def __init__(self, progressbar, userInput:dict):
-        QtCore.QRunnable.__init__(self)
-        self.progressbar = progressbar
-        self.userInput = userInput
-        self.simulate = None
-        self.signal = FinishLoadingSignal()
-
-    def run(self):
-        import time
-
-        self.simulate = Simulation(v=self.userInput['v'], D=self.userInput['D'], a=0, b=self.userInput['L'], t0=0, t1=self.userInput['T'],
-                              initial_condition=self.userInput['initial_condition'], dt=self.userInput['dt'], dx=0.5)
-        for i in range(101):
-            time.sleep(0.01)
-            QtCore.QMetaObject.invokeMethod(self.progressbar, "setValue", QtCore.Qt.QueuedConnection, QtCore.Q_ARG(int, i))
-        # time.sleep(0.5)
-        self.signal.done.emit()
-
 class MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self):
@@ -595,6 +572,32 @@ class MainWindow(QtWidgets.QMainWindow):
         self.runnable = SimulationRunnable(progressbar, userInput)
         self.runnable.signal.done.connect(self.show_UIResult)
         QtCore.QThreadPool.globalInstance().start(self.runnable)
+
+
+class FinishLoadingSignal(QtCore.QObject):
+    done = QtCore.pyqtSignal()
+
+
+class SimulationRunnable(QtCore.QRunnable):
+    def __init__(self, progressbar, userInput: dict):
+        QtCore.QRunnable.__init__(self)
+        self.progressbar = progressbar
+        self.userInput = userInput
+        self.simulate = None
+        self.signal = FinishLoadingSignal()
+
+    def run(self):
+        import time
+
+        self.simulate = Simulation(v=self.userInput['v'], D=self.userInput['D'], a=0, b=self.userInput['L'], t0=0, t1=self.userInput['T'],
+                                   initial_condition=self.userInput['initial_condition'], dt=self.userInput['dt'], dx=0.5)
+        for i in range(101):
+            time.sleep(0.01)
+            QtCore.QMetaObject.invokeMethod(
+                self.progressbar, "setValue", QtCore.Qt.QueuedConnection, QtCore.Q_ARG(int, i))
+        # time.sleep(0.5)
+        self.signal.done.emit()
+
 
 if __name__ == "__main__":
     import sys
