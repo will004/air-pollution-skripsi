@@ -6,6 +6,7 @@ dist/
 
 # Files
 *.csv
+*.xlsx
 *.jpg
 *.jpeg
 *.png
