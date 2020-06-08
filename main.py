@@ -355,7 +355,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.ui_2d_plot.inputPlotTime.value() not in self.userTimeInput:
             self.userTimeInput.append(self.ui_2d_plot.inputPlotTime.value())
             self.userTimeInput.sort()
-        self.plot_2d.drawGraph(self.result['x'], self.result['t'], self.result['C'], self.userTimeInput)
+            self.plot_2d.drawGraph(self.result['x'], self.result['t'], self.result['C'], self.userTimeInput)
         QtWidgets.QApplication.processEvents()
 
     def clearPlot(self):
