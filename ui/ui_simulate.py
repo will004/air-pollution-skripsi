@@ -51,6 +51,7 @@ class UISimulate(QtWidgets.QWidget):
         self.gridLayout.addWidget(self.infoL, 1, 1, 1, 1)
 
         self.inputL = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
+        self.inputL.setMaximum(100)
         self.inputL.setObjectName("inputL")
         self.gridLayout.addWidget(self.inputL, 1, 2, 1, 1)
 
@@ -68,8 +69,8 @@ class UISimulate(QtWidgets.QWidget):
         self.infoT1.setObjectName("infoT1")
         self.gridLayout.addWidget(self.infoT1, 2, 1, 1, 1)
 
-        self.inputT1 = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
-        self.inputT1.setDecimals(3)
+        self.inputT1 = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.inputT1.setMaximum(100)
         self.inputT1.setObjectName("inputT1")
         self.gridLayout.addWidget(self.inputT1, 2, 2, 1, 1)
 
