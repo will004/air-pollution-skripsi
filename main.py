@@ -53,6 +53,10 @@ class MainWindow(QtWidgets.QMainWindow):
         # To display menu bar in MacOS
         self.menubar.setNativeMenuBar(False)
 
+    def closeEvent(self, event):
+        self.event = event
+        self.exitMenuFunction()
+
     # Function to handle event in menu bar
     def simulateMenuFunction(self):
         if self.flag_simulate:
@@ -76,6 +80,8 @@ class MainWindow(QtWidgets.QMainWindow):
     def quitApp(self, i):
         if i.text() == '&Yes':
             QtWidgets.qApp.quit()
+        else:
+            self.event.ignore()
 
     # Function making sure user when create new simulation
     def newSimulationConfirmation(self):
