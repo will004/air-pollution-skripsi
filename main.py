@@ -44,7 +44,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.simulate_action.setShortcut('Ctrl+R')
         self.simulate_action.triggered.connect(self.simulateMenuFunction)
 
+        self.info_action.setShortcut('Ctrl+I')
         self.info_action.triggered.connect(self.show_UIInfo)
+
+        self.help_action.setShortcut('Ctrl+E')
         self.help_action.triggered.connect(self.show_UIHelp)
 
         self.exit_action.setShortcut('Ctrl+W')
