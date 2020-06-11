@@ -1,15 +1,15 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from utility import resource_path
 class UISimulate(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(UISimulate, self).__init__()
         self.setupUi()
 
     def setupUi(self):
-        self.i_icon = QtGui.QPixmap('img/i.png')
+        self.i_icon = QtGui.QPixmap(resource_path('img/i.png'))
         self.i_icon = self.i_icon.scaled(QtCore.QSize(15, 15))
 
-        self.illustration = QtGui.QPixmap('img/illustration.jpg')
+        self.illustration = QtGui.QPixmap(resource_path('img/illustration.jpg'))
         self.illustration = self.illustration.scaled(QtCore.QSize(500, 250))
 
         self.verticalLayoutWidget = QtWidgets.QWidget(self)

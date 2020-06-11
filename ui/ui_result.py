@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from utility import resource_path
 
 class UIResult(QtWidgets.QWidget):
     def __init__(self, parent):
@@ -7,7 +7,7 @@ class UIResult(QtWidgets.QWidget):
         self.setupUi()
         
     def setupUi(self):
-        self.i_icon = QtGui.QPixmap('img/i.png')
+        self.i_icon = QtGui.QPixmap(resource_path('img/i.png'))
         self.i_icon = self.i_icon.scaled(QtCore.QSize(15, 15))
 
         self.verticalLayoutWidget = QtWidgets.QWidget(self)
