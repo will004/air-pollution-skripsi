@@ -612,5 +612,6 @@ class SimulationRunnable(QtCore.QRunnable):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
+    app.setWindowIcon(QtGui.QIcon(resource_path('img/icon.ico')))
     w = MainWindow()
     sys.exit(app.exec_())
