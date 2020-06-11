@@ -40,5 +40,5 @@ class UITable(QtWidgets.QWidget):
         self.textTable.setHtml("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                             "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                             "p, li { white-space: pre-wrap; }\n"
-                                            "</style></head><body style=\" font-family:\'Times New Roman\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+                                            "</style></head><body style=\" font-size:13px; font-weight:400; font-style:normal;\">\n"
                                             "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'.AppleSystemUIFont\';\">Each cells represents the concentration of pollutant at one point of time and space.<br>Each columns represents position in the space.<br>Each rows represents one time step in the simulation.<br><br>The source of the pollutant is located at position 0. So, at the beginning of the simulation, the pollutant's concentration is 1 at position 0.</span></p></body></html>")
