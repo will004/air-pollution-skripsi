@@ -613,11 +613,11 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     app.setWindowIcon(QtGui.QIcon(resource_path('img/icon.ico')))
-    _id = QtGui.QFontDatabase.addApplicationFont(
+    QtGui.QFontDatabase.addApplicationFont(
         resource_path('fonts/SF Pro/SF-Pro-Display-Regular.otf'))
-    print(QtGui.QFontDatabase.applicationFontFamilies(_id))
-    _id = QtGui.QFontDatabase.addApplicationFont(
+    
+    QtGui.QFontDatabase.addApplicationFont(
         resource_path('fonts/SF Pro/SF-Pro-Display-Bold.otf'))
-    print(QtGui.QFontDatabase.applicationFontFamilies(_id))
+    
     w = MainWindow()
     sys.exit(app.exec_())
