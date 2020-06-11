@@ -5,7 +5,6 @@ from process import Simulation
 
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import pandas as pd
-import numpy as np
 from utility import resource_path
 
 class MainWindow(QtWidgets.QMainWindow):
