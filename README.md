@@ -2,7 +2,7 @@
 
 This program is created to simulate air pollution using 1D advection-diffusion equation with Forward Time Backward Space Central Space numerical scheme. Backward difference method is applied to first derivative of space-axis and Central difference method is applied to second derivative of space-axis.
 
-Illustration of simulation:
+Illustration of simulation: <br>
 <img src="./img/illustration.jpg" width="500px">
 ￼
 
