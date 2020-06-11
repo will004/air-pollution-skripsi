@@ -31,7 +31,7 @@ class UISimulate(QtWidgets.QWidget):
         self.labelTitle = QtWidgets.QLabel(self.verticalLayoutWidget)
         font = QtGui.QFont()
         # font.setFamily("Times New Roman")
-        font.setPointSize(24)
+        font.setPixelSize(24)
         font.setBold(True)
         font.setWeight(75)
         self.labelTitle.setFont(font)

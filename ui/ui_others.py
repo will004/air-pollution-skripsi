@@ -16,7 +16,7 @@ class UIOthers(QtWidgets.QWidget):
         self.label = QtWidgets.QLabel(self.verticalLayoutWidget)
         font = QtGui.QFont()
         # font.setFamily("Times New Roman")
-        font.setPointSize(36)
+        font.setPixelSize(36)
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)

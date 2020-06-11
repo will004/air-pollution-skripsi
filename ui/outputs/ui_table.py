@@ -12,7 +12,7 @@ class UITable(QtWidgets.QWidget):
         self.labelTitleOutput.setGeometry(QtCore.QRect(0, 0, 91, 41))
         font = QtGui.QFont()
         # font.setFamily("Times New Roman")
-        font.setPointSize(24)
+        font.setPixelSize(24)
         font.setBold(True)
         font.setWeight(75)
         self.labelTitleOutput.setFont(font)

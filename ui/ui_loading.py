@@ -17,7 +17,7 @@ class UILoading(QtWidgets.QWidget):
         self.label = QtWidgets.QLabel(self.verticalLayoutWidget)
         font = QtGui.QFont()
         # font.setFamily("Times New Roman")
-        font.setPointSize(24)
+        font.setPixelSize(24)
         font.setBold(True)
         font.setWeight(75)
         font.setKerning(True)
