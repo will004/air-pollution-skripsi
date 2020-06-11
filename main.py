@@ -613,11 +613,5 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     app.setWindowIcon(QtGui.QIcon(resource_path('img/icon.ico')))
-    QtGui.QFontDatabase.addApplicationFont(
-        resource_path('fonts/SF Pro/SF-Pro-Display-Regular.otf'))
-    
-    QtGui.QFontDatabase.addApplicationFont(
-        resource_path('fonts/SF Pro/SF-Pro-Display-Bold.otf'))
-    
     w = MainWindow()
     sys.exit(app.exec_())
