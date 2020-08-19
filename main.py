@@ -7,6 +7,7 @@ from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as Navigatio
 import pandas as pd
 from utility import resource_path
 
+
 class MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self):
@@ -21,7 +22,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setMenuBar()
 
         self.flag_simulate = False
-    
+
     def setMenuBar(self):
         self.menubar = self.menuBar()
 
@@ -30,7 +31,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.info_action = QtWidgets.QAction('Info')
         self.help_action = QtWidgets.QAction('Help')
         self.exit_action = QtWidgets.QAction('Exit')
-        
+
         # Add action to menu bar
         self.simulation_menu = self.menubar.addMenu('Simulation')
         self.simulation_menu.addAction(self.simulate_action)
@@ -52,7 +53,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.exit_action.setShortcut('Ctrl+W')
         self.exit_action.triggered.connect(self.exitMenuFunction)
-        
+
         # To display menu bar in MacOS
         self.menubar.setNativeMenuBar(False)
 
@@ -72,7 +73,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.msg.setIcon(QtWidgets.QMessageBox.Warning)
         self.msg.setText(
             "Are you sure do you want to quit?")
-        
+
         self.msg.setWindowTitle("Exit")
         self.msg.setStandardButtons(
             QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
@@ -83,8 +84,8 @@ class MainWindow(QtWidgets.QMainWindow):
     def quitApp(self, i):
         if i.text() == '&Yes':
             QtWidgets.qApp.quit()
-        else:
-            self.event.ignore()
+        # else:
+        #     i.ignore()
 
     # Function making sure user when create new simulation
     def newSimulationConfirmation(self):
@@ -111,27 +112,29 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setWindowTitle("Welcome")
         self.setCentralWidget(self.ui_main)
         self.show()
-    
+
         # self.btnSimulate = self.ui_main.btnSimulateMenu
         # self.btnSimulate.clicked.connect(self.show_UISimulate)
         # self.btnSimulate.adjustSize()
 
     def show_UIInfo(self):
         self.ui_info = ui_others.UIOthers(self, titleTxt='About This Program', contentTxt=("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                                      "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-                                      "p, li { white-space: pre-wrap; }\n"
-                                      "</style></head><body style=\" font-size:13px; font-weight:400; font-style:normal;\">\n"
-                                      "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'.AppleSystemUIFont\'; font-size:18px;\">Welcome to the air pollution simulation program!</span></p>\n"
-                                      "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.AppleSystemUIFont\'; font-size:18px;\"><br /></p>\n"
-                                      "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'.AppleSystemUIFont\'; font-size:18px;\">This program is created to simulate air pollution using 1D advection-diffusion equation with Forward Time Backward Space Central Space numerical scheme. Backward difference method is applied to first derivative of space-axis and Central difference method is applied to second derivative of space-axis.</span></p>\n"
-                                      "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.AppleSystemUIFont\'; font-size:18px;\"><br /></p>\n"
-                                      "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'.AppleSystemUIFont\'; font-size:18px;\">Illustration of simulation:</span></p>\n"
-                                      "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.AppleSystemUIFont\'; font-size:18px;\"><br /></p>\n"
-                                      "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'.AppleSystemUIFont\'; font-size:18px;\"><img src=\""+resource_path('img/illustration.jpg')+"\" width=500 height=300></span></p>\n"
-                                      "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.AppleSystemUIFont\'; font-size:18px;\"><br /></p>\n"
-                                      "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'.AppleSystemUIFont\'; font-size:18px;\">The source of the pollutant is located at 0 cm.</span></p>\n"
-                                      "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'.AppleSystemUIFont\'; font-size:18px;\">The wind inside the space will move from left to right (position 0 to the far most position of space).</span></p></body></html>"
-                                      "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'.AppleSystemUIFont\'; font-size:18px;\">The length of the space is represented by L.</span></p></body></html>"))
+                                                                                           "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                                                           "p, li { white-space: pre-wrap; }\n"
+                                                                                           "</style></head><body style=\" font-size:13px; font-weight:400; font-style:normal;\">\n"
+                                                                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'.AppleSystemUIFont\'; font-size:18px;\">Welcome to the air pollution simulation program!</span></p>\n"
+                                                                                           "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.AppleSystemUIFont\'; font-size:18px;\"><br /></p>\n"
+                                                                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'.AppleSystemUIFont\'; font-size:18px;\">This program is created to simulate air pollution using 1D advection-diffusion equation with Forward Time Backward Space Central Space numerical scheme. Backward difference method is applied to first derivative of space-axis and Central difference method is applied to second derivative of space-axis.</span></p>\n"
+                                                                                           "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.AppleSystemUIFont\'; font-size:18px;\"><br /></p>\n"
+                                                                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'.AppleSystemUIFont\'; font-size:18px;\">Illustration of simulation:</span></p>\n"
+                                                                                           "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.AppleSystemUIFont\'; font-size:18px;\"><br /></p>\n"
+                                                                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'.AppleSystemUIFont\'; font-size:18px;\"><img src=\"" +
+                                                                                           resource_path(
+                                                                                               'img/illustration.jpg')+"\" width=500 height=300></span></p>\n"
+                                                                                           "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'.AppleSystemUIFont\'; font-size:18px;\"><br /></p>\n"
+                                                                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'.AppleSystemUIFont\'; font-size:18px;\">The source of the pollutant is located at 0 cm.</span></p>\n"
+                                                                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'.AppleSystemUIFont\'; font-size:18px;\">The wind inside the space will move from left to right (position 0 to the far most position of space).</span></p></body></html>"
+                                                                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'.AppleSystemUIFont\'; font-size:18px;\">The length of the space is represented by L.</span></p></body></html>"))
         self.setWindowTitle('Info')
         self.setCentralWidget(self.ui_info)
         self.show()
@@ -202,7 +205,7 @@ class MainWindow(QtWidgets.QMainWindow):
             lambda: self.generateSampleData(self.sampleData))
         self.ui_simulate.btnReset.clicked.connect(self.resetConfirmation)
         self.ui_simulate.btnSimulate.clicked.connect(self.validateField)
-        
+
         # Change checkbox to false if there is any changes to input field
         self.ui_simulate.inputL.valueChanged.connect(
             lambda: self.checkValueChanged('L', self.sampleData['L']))
@@ -216,11 +219,11 @@ class MainWindow(QtWidgets.QMainWindow):
             lambda: self.checkValueChanged('v', self.sampleData['v']))
         self.ui_simulate.inputD.valueChanged.connect(
             lambda: self.checkValueChanged('D', self.sampleData['D']))
-    
+
     def show_UILoading(self):
         self.ui_loading = ui_loading.UILoading(self)
         self.setWindowTitle('Loading...')
-        self.ui_loading.progressBar.setRange(0,100)
+        self.ui_loading.progressBar.setRange(0, 100)
         self.setCentralWidget(self.ui_loading)
         self.show()
 
@@ -239,7 +242,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setCentralWidget(self.ui_result)
         self.show()
 
-        self.ui_result.displaySettings.currentIndexChanged.connect(self.changeOutputWidget)
+        self.ui_result.displaySettings.currentIndexChanged.connect(
+            self.changeOutputWidget)
 
         self.ui_result.displaySettings.addItem('Table')
         self.ui_result.displaySettings.addItem('2D Graph')
@@ -258,12 +262,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui_2d_plot.widget2DPlot.addWidget(self.plot_2d)
         self.ui_2d_plot.labelPlotInfo.setPixmap(self.i_icon)
         self.ui_2d_plot.inputPlotTime.setMaximum(int(self.userInput['T']))
-        self.ui_2d_plot.setToolTip('Input integer time within range [0-'+str(int(self.userInput['T']))+']')
-        
+        self.ui_2d_plot.setToolTip(
+            'Input integer time within range [0-'+str(int(self.userInput['T']))+']')
+
         # Set Values to output widgets
         self.setTableWidgetValue(table=self.ui_table.tableWidgetResult)
-        self.plot_2d.drawGraph(self.result['x'], self.result['t'], self.result['C'])
-        self.plot_3d.drawGraph(self.result['x'], self.result['t'], self.result['C'])
+        self.plot_2d.drawGraph(
+            self.result['x'], self.result['t'], self.result['C'])
+        self.plot_3d.drawGraph(
+            self.result['x'], self.result['t'], self.result['C'])
 
         # Add output widgets to QStackedWidget
         self.ui_result.outputWidget.addWidget(self.ui_table)
@@ -284,7 +291,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui_result.btnBack.clicked.connect(
             lambda: self.backToSimulate(self.userInput))
         self.ui_result.btnExport.clicked.connect(self.exportTable)
-    
+
     def show_UI2DPlot(self):
         self.ui_2d_plot = ui_2d_plot.UI2DWidget(self)
         self.show()
@@ -297,7 +304,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.ui_simulate.inputL.setValue(userInput['L'])
         self.ui_simulate.inputT1.setValue(userInput['T'])
-        self.ui_simulate.inputInitialConcentration.setValue(userInput['initial_condition'])
+        self.ui_simulate.inputInitialConcentration.setValue(
+            userInput['initial_condition'])
         self.ui_simulate.inputTimeStep.setValue(userInput['dt'])
         self.ui_simulate.inputV.setValue(userInput['v'])
         self.ui_simulate.inputD.setValue(userInput['D'])
@@ -331,9 +339,11 @@ class MainWindow(QtWidgets.QMainWindow):
         table.setRowCount(len(self.result['t']))
 
         # Set table header
-        self.horizontalHeaderLabel = [str(round(header,4))+' cm' for header in self.result['x']]
+        self.horizontalHeaderLabel = [
+            str(round(header, 4))+' cm' for header in self.result['x']]
         table.setHorizontalHeaderLabels(self.horizontalHeaderLabel)
-        self.verticalHeaderLabel = [str(round(header,4)).ljust(4,'0')+' s' for header in self.result['t']]
+        self.verticalHeaderLabel = [str(round(header, 4)).ljust(
+            4, '0')+' s' for header in self.result['t']]
         table.setVerticalHeaderLabels(self.verticalHeaderLabel)
 
         # Resize column according to its content
@@ -345,7 +355,8 @@ class MainWindow(QtWidgets.QMainWindow):
         # Set table contents
         for i in range(table.rowCount()):
             for j in range(table.columnCount()):
-                table.setItem(i, j, QtWidgets.QTableWidgetItem(str(self.result['C'][i,j])))
+                table.setItem(i, j, QtWidgets.QTableWidgetItem(
+                    str(self.result['C'][i, j])))
 
     def exportTable(self):
         self.options = QtWidgets.QFileDialog.Options()
@@ -364,7 +375,8 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.ui_2d_plot.inputPlotTime.value() not in self.userTimeInput:
             self.userTimeInput.append(self.ui_2d_plot.inputPlotTime.value())
             self.userTimeInput.sort()
-            self.plot_2d.drawGraph(self.result['x'], self.result['t'], self.result['C'], self.userTimeInput)
+            self.plot_2d.drawGraph(
+                self.result['x'], self.result['t'], self.result['C'], self.userTimeInput)
         QtWidgets.QApplication.processEvents()
 
     def clearPlot(self):
@@ -423,7 +435,8 @@ class MainWindow(QtWidgets.QMainWindow):
     def resetConfirmation(self):
         self.ui_simulate.msg = QtWidgets.QMessageBox(self)
         self.ui_simulate.msg.setIcon(QtWidgets.QMessageBox.Warning)
-        self.ui_simulate.msg.setText("Are you sure to reset all field to zero?")
+        self.ui_simulate.msg.setText(
+            "Are you sure to reset all field to zero?")
         self.ui_simulate.msg.setInformativeText(
             "If you click Yes, all field will be set to 0")
         self.ui_simulate.msg.setWindowTitle("Reset all Field")
@@ -463,7 +476,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.msg = QtWidgets.QMessageBox(self)
         self.msg.setIcon(QtWidgets.QMessageBox.Critical)
         self.msg.setText("Invalid Input!")
-        self.msg.setInformativeText("For more information, please hover to red icon next to the field")
+        self.msg.setInformativeText(
+            "For more information, please hover to red icon next to the field")
         self.msg.setWindowTitle("Invalid Input")
         self.msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
 
@@ -487,7 +501,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 "Input length of space in cm")
             self.ui_simulate.infoL.setStyleSheet("QToolTip{color:black;}")
             QtWidgets.QApplication.processEvents()
-        
+
         if self.T == 0:
             self.ui_simulate.infoT1.setPixmap(self.warning_icon)
             self.ui_simulate.infoT1.setToolTip(
@@ -495,7 +509,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui_simulate.infoT1.setStyleSheet("QToolTip{color:red;}")
             QtWidgets.QApplication.processEvents()
             self.flagZeroField.append(True)
-            
+
         elif self.T != 0:
             self.ui_simulate.infoT1.setPixmap(self.i_icon)
             self.ui_simulate.infoT1.setToolTip(
@@ -525,12 +539,13 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui_simulate.infoTimeStep.setStyleSheet("QToolTip{color:red;}")
             QtWidgets.QApplication.processEvents()
             self.flagZeroField.append(True)
-            
+
         elif self.dt != 0:
             self.ui_simulate.infoTimeStep.setPixmap(self.i_icon)
             self.ui_simulate.infoTimeStep.setToolTip(
                 "Input time step for simulation in second")
-            self.ui_simulate.infoTimeStep.setStyleSheet("QToolTip{color:black;}")
+            self.ui_simulate.infoTimeStep.setStyleSheet(
+                "QToolTip{color:black;}")
             QtWidgets.QApplication.processEvents()
 
         # D can not be zero
@@ -541,14 +556,14 @@ class MainWindow(QtWidgets.QMainWindow):
 
             QtWidgets.QApplication.processEvents()
             self.flagZeroField.append(True)
-            
+
         elif self.D != 0:
             self.ui_simulate.infoD.setPixmap(self.i_icon)
             self.ui_simulate.infoD.setToolTip(
                 "Input diffusion coefficient of polutant")
             self.ui_simulate.infoD.setStyleSheet("QToolTip{color:black;}")
             QtWidgets.QApplication.processEvents()
-        
+
         if any(self.flagZeroField):
             self.msg.exec_()
             return
@@ -568,7 +583,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 'D': self.ui_simulate.inputD.value()
             }
             self.show_UILoading()
-            
+
         elif self.dt > self.dx**2/(2*self.D):
             self.ui_simulate.infoTimeStep.setPixmap(self.warning_icon)
             self.ui_simulate.infoTimeStep.setToolTip(
