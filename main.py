@@ -572,6 +572,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.dx = 0.5
         self.dt = self.ui_simulate.inputTimeStep.value()
 
+        # TODO: make dx dynamic. following user's input.
+
         if self.dt <= self.dx**2/(2*self.D):
             self.userInput = {
                 'L': self.ui_simulate.inputL.value(),
