@@ -569,30 +569,19 @@ class MainWindow(QtWidgets.QMainWindow):
             return
 
         # Validate time step with neumann condition, dx=0.5
-        self.dx = 0.5
         self.dt = self.ui_simulate.inputTimeStep.value()
+        self.dx = (6 * self.dt)**0.5
 
-        # TODO: make dx dynamic. following user's input.
-
-        if self.dt <= self.dx**2/(2*self.D):
-            self.userInput = {
-                'L': self.ui_simulate.inputL.value(),
-                'T': self.ui_simulate.inputT1.value(),
-                'dt': self.ui_simulate.inputTimeStep.value(),
-                'dx': 0.5,
-                'initial_condition': self.ui_simulate.inputInitialConcentration.value(),
-                'v': self.ui_simulate.inputV.value(),
-                'D': self.ui_simulate.inputD.value()
-            }
-            self.show_UILoading()
-
-        elif self.dt > self.dx**2/(2*self.D):
-            self.ui_simulate.infoTimeStep.setPixmap(self.warning_icon)
-            self.ui_simulate.infoTimeStep.setToolTip(
-                "Time step must be <= "+str(self.dx**2/(2*self.D)))
-            self.ui_simulate.infoTimeStep.setStyleSheet("QToolTip{color:red;}")
-            QtWidgets.QApplication.processEvents()
-            self.msg.exec_()
+        self.userInput = {
+            'L': self.ui_simulate.inputL.value(),
+            'T': self.ui_simulate.inputT1.value(),
+            'dt': self.ui_simulate.inputTimeStep.value(),
+            'dx': self.dx,
+            'initial_condition': self.ui_simulate.inputInitialConcentration.value(),
+            'v': self.ui_simulate.inputV.value(),
+            'D': self.ui_simulate.inputD.value()
+        }
+        self.show_UILoading()
 
     def processingData(self, progressbar, userInput):
         self.runnable = SimulationRunnable(progressbar, userInput)
@@ -616,7 +605,7 @@ class SimulationRunnable(QtCore.QRunnable):
         import time
 
         self.simulate = Simulation(v=self.userInput['v'], D=self.userInput['D'], a=0, b=self.userInput['L'], t0=0, t1=self.userInput['T'],
-                                   initial_condition=self.userInput['initial_condition'], dt=self.userInput['dt'], dx=0.5)
+                                   initial_condition=self.userInput['initial_condition'], dt=self.userInput['dt'], dx=self.userInput['dx'])
         for i in range(101):
             time.sleep(0.01)
             QtCore.QMetaObject.invokeMethod(
