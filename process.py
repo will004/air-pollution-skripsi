@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 
 class Simulation:
@@ -37,11 +38,15 @@ class Simulation:
             for j in self.x:
                 # boundary condition, Cx(inf,t) = 0 -> C_{j+1}^n = C_{j}^n
                 if self.idx_x+1 == len(self.x):
-                    self.C[self.idx_t+1, self.idx_x] = self.FTBSCS(
+                    result = self.FTBSCS(
                         self.C, self.idx_t, self.idx_x, self.alpha, self.beta, bound=True)
+                    self.C[self.idx_t+1, self.idx_x] = 1 if math.isclose(
+                        1, result, rel_tol=2e-03) else result
                     break
-                self.C[self.idx_t+1, self.idx_x] = self.FTBSCS(
-                    self.C, self.idx_t, self.idx_x, self.alpha, self.beta)
+                result = self.FTBSCS(self.C, self.idx_t,
+                                     self.idx_x, self.alpha, self.beta)
+                self.C[self.idx_t+1, self.idx_x] = 1 if math.isclose(
+                    1, result, rel_tol=2e-03) else result
 
                 self.idx_x += 1
             self.idx_t += 1
