@@ -18,10 +18,11 @@ class Canvas3D(Canvas):
         x, t = np.meshgrid(x, t)
         self.axes.clear()
         # plots the 3D surface plot
-        self.axes.plot_surface(x, t, C, cmap='jet')
+        surf = self.axes.plot_surface(x, t, C, cmap='jet')
         self.axes.set_xlabel('Space (cm)')
         self.axes.set_ylabel('Time (s)')
         self.axes.set_zlabel('Concentration')
+        self.fig.colorbar(surf, shrink=0.5, aspect=5)
         self.draw_idle()
 
 
